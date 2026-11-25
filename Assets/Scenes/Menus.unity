@@ -4127,6 +4127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457499303}
   - component: {fileID: 457499304}
+  - component: {fileID: 457499305}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -4165,6 +4166,22 @@ MonoBehaviour:
   pauseScreen: {fileID: 224018568}
   homeScreen: {fileID: 917943379}
   gameplay: {fileID: 0}
+--- !u!114 &457499305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457499302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d24105c2b64fd44792c1254ae2ad1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameplayActionSfx
+  attackClip: {fileID: 8300000, guid: 1465dc4e8700dd74ca102205a742ba29, type: 3}
+  jumpClip: {fileID: 8300000, guid: 36d23605f4c2db24f8bae769d3607ec3, type: 3}
+  boostClip: {fileID: 8300000, guid: dbf37fe16773a6b4081db289cfef4653, type: 3}
+  healClip: {fileID: 8300000, guid: d8eeef452c011a14bb8f3ae37558ead2, type: 3}
 --- !u!1 &461176671
 GameObject:
   m_ObjectHideFlags: 0
