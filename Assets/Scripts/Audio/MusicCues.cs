@@ -25,6 +25,12 @@ public class MusicCues : MonoBehaviour
         GameEvents.GameLost -= OnLost;
     }
 
+    // The gameplay scene must sound like gameplay as soon as it loads. Do not wait for
+    // GameStarted: that is only raised by the real match controller (added in Task 09), and
+    // a scene with only MusicCues would otherwise be silent. CrossfadeTo ignores a clip that
+    // is already playing, so the later event is harmless.
+    void Start() => Crossfade(gameplayClip);
+
     void OnStarted() => Crossfade(gameplayClip);
     void OnWon()     => Crossfade(winClip);
     void OnLost()    => Crossfade(loseClip);
