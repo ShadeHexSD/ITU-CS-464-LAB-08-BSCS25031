@@ -192,8 +192,6 @@ Subscribers use `+=` in `OnEnable` and `-=` in `OnDisable`; publishers invoke wi
 | `MusicCues` | `GameStarted`, `GameWon`, `GameLost` | Music / crossfade changes |
 | `ResultFlowListener` | `GameWon`, `GameLost` | Shows Results with success/error cue |
 
-Eight components listen independently; at least three are required.
-
 ---
 
 ## 7. Integration and quality checks
@@ -205,7 +203,6 @@ Eight components listen independently; at least three are required.
 - The responsive layout is unchanged: `MenuCanvas`, 1080 × 1920 reference, `Scale With Screen
   Size`, TextMeshPro, and a `SafeArea` component on each screen's `Safe` child so nothing sits
   under a phone notch.
-- Complete flow to verify in Play mode:
 
 ```text
 launch → menus → loading (bar reaches 100%) → gameplay
@@ -214,7 +211,6 @@ launch → menus → loading (bar reaches 100%) → gameplay
 
 - The Console must stay free of errors.
 - Pause opens with Esc / Android Back. The Results panel provides **Next Map** and **Home**.
-  The HUD contains no QA/debug buttons.
 - Win/lose stingers play once; rapid pickups overlap through `SfxPlayer`.
 
 ---
@@ -247,8 +243,3 @@ One row per unique source file (a reused file is credited once):
 | `pluck_002.ogg` | Gameplay attack | Kenney | CC0 1.0 | https://kenney.nl/assets |
 | `win.ogg` | UI success and victory stinger | Kenney | CC0 1.0 | https://kenney.nl/assets |
 
-The same list is available in-game on **Settings → Credits**.
-
-**Visual reference:** Brawl Stars by Supercell is acknowledged as the style inspiration only.
-The game's names, layout, colours, shapes and code are original. No copyrighted commercial game
-audio is used.
