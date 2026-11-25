@@ -2,7 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-// A short message such as "Purchased!". Any script can call Toast.Instance.Show("...").
+// A short message such as "Purchased!" or "Not enough gems".
+// Any script can call Toast.Instance.Show("...").
 public class Toast : MonoBehaviour
 {
     public static Toast Instance { get; private set; }
@@ -17,15 +18,23 @@ public class Toast : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         group.alpha = 0f;
         box.anchoredPosition = new Vector2(0f, hiddenY);
     }
 
-    public void Show(string message)
+    void OnDestroy() { if (Instance == this) Instance = null; }
+
+    /// <param name="isError">Plays the error cue instead of the success cue.</param>
+    public void Show(string message, bool isError = false)
     {
         label.text = message;
         if (running != null) StopCoroutine(running);   // a new message replaces the old one
+
+        if (isError) UIAudio.PlayError();
+        else UIAudio.PlaySuccess();
+
         running = StartCoroutine(Play());
     }
 

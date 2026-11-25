@@ -39,9 +39,12 @@ public class LevelCard : MonoBehaviour
         if (locked)
         {
             shake.Play();
-            Toast.Instance.Show("Earn more stars to unlock");   // say how to fix it
+            Toast.Instance?.Show("Earn more stars to unlock", true);   // say how to fix it
             return;
         }
-        ScreenManager.Instance.Show(nextScreen, Transition.Push);
+        // Gameplay is now a real scene behind the loading screen. Level cards must never
+        // navigate to the old in-menu mock match screen ("Gameplay goes here").
+        if (LevelLoader.Instance != null) LevelLoader.Instance.LoadGameplay();
+        else ScreenManager.Instance?.Show(nextScreen, Transition.Push);
     }
 }

@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 // Plays the reward animation every time Results opens.
-public class ResultsScreen : MonoBehaviour
+// NOTE: the class name must match this file name so Unity can attach it.
+public class ResultScreen : MonoBehaviour
 {
     [SerializeField] UIScreen screen;               // the Screen_Results object itself
     [SerializeField] RectTransform title;           // the "Victory!" text
