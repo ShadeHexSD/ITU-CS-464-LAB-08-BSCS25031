@@ -14,6 +14,7 @@ public class HealthBarListener : MonoBehaviour
     [SerializeField] float easeSpeed = 2f;              // fill fraction per second
 
     float target = 1f;
+    float shown = 1f;
 
     void OnEnable()
     {
@@ -33,7 +34,8 @@ public class HealthBarListener : MonoBehaviour
     {
         if (health == null) return;
         OnChanged(health.Current, health.Max);
-        if (fill != null) fill.fillAmount = target;     // no easing on the first frame
+        shown = target;                                  // no easing on the first frame
+        Apply(shown);
     }
 
     void OnChanged(int current, int max)
@@ -44,7 +46,23 @@ public class HealthBarListener : MonoBehaviour
 
     void Update()
     {
+        if (fill == null || Mathf.Approximately(shown, target)) return;
+        shown = Mathf.MoveTowards(shown, target, easeSpeed * Time.unscaledDeltaTime);
+        Apply(shown);
+    }
+
+    void Apply(float value)
+    {
         if (fill == null) return;
-        fill.fillAmount = Mathf.MoveTowards(fill.fillAmount, target, easeSpeed * Time.unscaledDeltaTime);
+        // A Filled Image with no Sprite ignores fillAmount, so shrink its rect instead.
+        if (fill.sprite != null)
+        {
+            fill.fillAmount = value;
+            return;
+        }
+        RectTransform rect = fill.rectTransform;
+        Vector2 max = rect.anchorMax;
+        max.x = value;
+        rect.anchorMax = max;
     }
 }
