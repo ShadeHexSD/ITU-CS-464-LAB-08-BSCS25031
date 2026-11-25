@@ -39,7 +39,13 @@ public class LevelLoader : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        // Ignore a duplicate in the SAME scene, but let a new scene's loader replace the old one:
+        // the old Menus object is gone by the time gameplay needs LoadMenu()/Reload().
+        if (Instance != null && Instance != this && Instance.gameObject.scene == gameObject.scene)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
     }
 

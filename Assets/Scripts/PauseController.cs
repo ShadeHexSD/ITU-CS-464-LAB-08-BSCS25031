@@ -68,14 +68,25 @@ public class PauseController : MonoBehaviour
 
     public void Restart()
     {
-        gameplay.ResetTimer();
-        Resume();
+        Time.timeScale = 1f;
+        AudioBootstrap.SetPaused(false);
+
+        // The real gameplay scene owns a LevelLoader. The placeholder match only has GameplayStub.
+        if (LevelLoader.Instance != null) LevelLoader.Instance.Reload();
+        else
+        {
+            gameplay?.ResetTimer();
+            Resume();
+        }
     }
 
     public void QuitToMenu()
     {
         Time.timeScale = 1f;
         AudioBootstrap.SetPaused(false);
-        ScreenManager.Instance?.GoHome(homeScreen, Transition.Fade);
+
+        // In the gameplay scene there is no menu Screen to return to: load Menus.unity instead.
+        if (LevelLoader.Instance != null) LevelLoader.Instance.LoadMenu();
+        else if (homeScreen != null) ScreenManager.Instance?.GoHome(homeScreen, Transition.Fade);
     }
 }
