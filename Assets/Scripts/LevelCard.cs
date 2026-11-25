@@ -39,7 +39,7 @@ public class LevelCard : MonoBehaviour
         if (locked)
         {
             shake.Play();
-            Toast.Instance.Show("Earn more stars to unlock");   // say how to fix it
+            Toast.Instance?.Show("Earn more stars to unlock", true);   // say how to fix it
             return;
         }
         ScreenManager.Instance.Show(nextScreen, Transition.Push);

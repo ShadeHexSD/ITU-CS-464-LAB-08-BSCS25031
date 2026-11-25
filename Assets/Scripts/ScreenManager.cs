@@ -42,8 +42,8 @@ public class ScreenManager : MonoBehaviour
 
     void Update()
     {
-        // Esc on desktop = back key on Android.
-        if (Input.GetKeyDown(KeyCode.Escape) && current != null && !current.ignoreBackKey) Back();
+        // Esc / Android Back / gamepad East, through the new Input System.
+        if (BackInput.WasPressedThisFrame() && current != null && !current.ignoreBackKey) Back();
     }
 
     // Go to a new screen and remember where we were.
@@ -84,6 +84,10 @@ public class ScreenManager : MonoBehaviour
         busy = true;
         bool modalForward = how == Transition.Modal && !reverse;
         bool modalBack = how == Transition.Modal && reverse;
+
+        if (modalForward) UIAudio.PlayOpen();
+        if (modalBack) UIAudio.PlayClose();
+
         float w = root.rect.width;
         float h = root.rect.height;
 

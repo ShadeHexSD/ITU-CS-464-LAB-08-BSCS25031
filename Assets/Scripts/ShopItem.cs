@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Put on a shop card that has a buy Button and a price label.
-public class ShopItemm : MonoBehaviour
+// NOTE: the class name must match this file name so Unity can attach it.
+public class ShopItem : MonoBehaviour
 {
     enum Reward { Coins, Gems, Skin }
 
@@ -38,15 +39,19 @@ public class ShopItemm : MonoBehaviour
     {
         if (owned) return;
 
-        // Not enough gems: say so and take nothing.
+        // Not enough gems: say so, take nothing, and play error feedback.
         if (gemCost > 0 && !Wallet.TrySpendGems(gemCost))
         {
-            if (Toast.Instance != null) Toast.Instance.Show("Not enough gems. Try the gem pack.");
+            Toast.Instance?.Show("Not enough gems. Try the gem pack.", true);
             return;
         }
 
-        if (reward == Reward.Coins) Wallet.AddCoins(amount);
-        if (reward == Reward.Gems) Wallet.AddGems(amount);
+        switch (reward)
+        {
+            case Reward.Coins: Wallet.AddCoins(amount); break;
+            case Reward.Gems: Wallet.AddGems(amount); break;
+            case Reward.Skin: SkinStore.UnlockChrome(); break;
+        }
 
         if (oneTime)
         {
@@ -62,7 +67,7 @@ public class ShopItemm : MonoBehaviour
             flash = StartCoroutine(FlashLabel("+" + amount));
         }
 
-        if (Toast.Instance != null) Toast.Instance.Show("Purchased!");
+        Toast.Instance?.Show("Purchased!");
         StartCoroutine(Punch());
     }
 

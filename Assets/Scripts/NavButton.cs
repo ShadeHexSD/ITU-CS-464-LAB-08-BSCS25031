@@ -17,6 +17,9 @@ public class NavButton : MonoBehaviour
     [SerializeField] UIScreen target;
     [SerializeField] Transition transition = Transition.Push;
 
+    // ButtonFeedback uses this to choose the Back sound instead of the Click sound.
+    public bool IsBack => mode == Mode.Back;
+
     void Awake() { GetComponent<Button>().onClick.AddListener(OnClick); }
 
     void OnClick()
@@ -24,10 +27,10 @@ public class NavButton : MonoBehaviour
         var manager = ScreenManager.Instance;
         switch (mode)
         {
-            case Mode.Forward: manager.Show(target, transition); break;
-            case Mode.Back: manager.Back(); break;
-            case Mode.Home: manager.GoHome(target, transition); break;
-            case Mode.Rewind: manager.Rewind(target, transition); break;
+            case Mode.Forward: manager?.Show(target, transition); break;
+            case Mode.Back: manager?.Back(); break;
+            case Mode.Home: manager?.GoHome(target, transition); break;
+            case Mode.Rewind: manager?.Rewind(target, transition); break;
         }
     }
 }
