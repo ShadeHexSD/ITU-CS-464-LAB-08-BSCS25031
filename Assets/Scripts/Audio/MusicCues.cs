@@ -31,13 +31,13 @@ public class MusicCues : MonoBehaviour
     // is already playing, so the later event is harmless.
     void Start() => Crossfade(gameplayClip);
 
-    void OnStarted() => Crossfade(gameplayClip);
-    void OnWon()     => Crossfade(winClip);
-    void OnLost()    => Crossfade(loseClip);
+    void OnStarted() => Crossfade(gameplayClip, true);
+    void OnWon()     => Crossfade(winClip, false);   // stinger, not a looping background track
+    void OnLost()    => Crossfade(loseClip, false);
 
-    static void Crossfade(AudioClip clip)
+    static void Crossfade(AudioClip clip, bool loop = true)
     {
         if (MusicPlayer.Instance != null && clip != null)
-            MusicPlayer.Instance.CrossfadeTo(clip);
+            MusicPlayer.Instance.CrossfadeTo(clip, loop);
     }
 }

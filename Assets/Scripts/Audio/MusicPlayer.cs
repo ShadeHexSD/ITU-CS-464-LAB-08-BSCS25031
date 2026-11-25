@@ -67,15 +67,22 @@ public class MusicPlayer : MonoBehaviour
         b.Stop();
         current = a;
         current.clip = clip;
+        current.loop = true;
         current.volume = volume;
         current.Play();
     }
 
-    /// <summary>Fade the current track out and the new one in. No-op if it is already playing.</summary>
-    public void CrossfadeTo(AudioClip clip)
+    /// <summary>Fade the current track out and a looping track in. No-op if it is already playing.</summary>
+    public void CrossfadeTo(AudioClip clip) => CrossfadeTo(clip, true);
+
+    /// <summary>
+    /// Fade to a track. Use loop:false for short win/lose stingers - every source is otherwise
+    /// looping, which made result sounds repeat forever.
+    /// </summary>
+    public void CrossfadeTo(AudioClip clip, bool loop)
     {
         if (clip == null) return;
-        if (current.clip == clip && current.isPlaying) return;
+        if (current.clip == clip && current.isPlaying && current.loop == loop) return;
 
         // If a fade is still running, finish it abruptly rather than juggling three tracks.
         if (fade != null)
@@ -89,6 +96,7 @@ public class MusicPlayer : MonoBehaviour
         AudioSource from = current;
         AudioSource to = from == a ? b : a;
         to.clip = clip;
+        to.loop = loop;
         to.volume = 0f;
         to.Play();
         current = to;
