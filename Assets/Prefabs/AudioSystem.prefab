@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4186938379621018226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2167473164071607370}
+  - component: {fileID: 660690267576370209}
+  - component: {fileID: 8940036574411320417}
+  - component: {fileID: 4089539400760176351}
+  - component: {fileID: 1927389843033602955}
+  m_Layer: 0
+  m_Name: AudioSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2167473164071607370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186938379621018226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &660690267576370209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186938379621018226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de55b44c6c9f4c4a98cc4289ef01725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioBootstrap
+  mixer: {fileID: 24100000, guid: ca2a59fc894a29d489f0f22fe0250c52, type: 2}
+  normalSnapshot: {fileID: 0}
+  pausedSnapshot: {fileID: 0}
+  snapshotSeconds: 0.15
+--- !u!114 &8940036574411320417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186938379621018226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb6d2ac527d39f47bbce7ba281d73c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAudio
+  uiGroup: {fileID: -6749639251561228999, guid: ca2a59fc894a29d489f0f22fe0250c52, type: 2}
+  voices: 4
+  hoverClip: {fileID: 0}
+  clickClip: {fileID: 0}
+  backClip: {fileID: 0}
+  openClip: {fileID: 0}
+  closeClip: {fileID: 0}
+  pauseClip: {fileID: 0}
+  resumeClip: {fileID: 0}
+  successClip: {fileID: 0}
+  errorClip: {fileID: 0}
+  pitchRange: 0.5
+  minVolume: 0.9
+  hoverCooldown: 0.05
+--- !u!114 &4089539400760176351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186938379621018226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6270b05eeac8b0341b6f74ef5483a244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxPlayer
+  sfxGroup: {fileID: 1956213111391088154, guid: ca2a59fc894a29d489f0f22fe0250c52, type: 2}
+  voices: 6
+  pitchRange: 2
+  minVolume: 0.85
+--- !u!114 &1927389843033602955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186938379621018226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6145822051e9c408ff207a887925b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
+  musicGroup: {fileID: 4620608200749674862, guid: ca2a59fc894a29d489f0f22fe0250c52, type: 2}
+  startClip: {fileID: 0}
+  fadeSeconds: 1.5
+  volume: 1
